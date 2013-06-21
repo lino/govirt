@@ -3,6 +3,6 @@ govirt
 
 libvirt wrapper for golang
 
-Early Alpha Stuff
+Contributors welcome. [Test your stuff.](http://golang.org/pkg/testing/)
 
 [![Build Status](https://travis-ci.org/linohh/govirt.png?branch=master)](https://travis-ci.org/linohh/govirt)
