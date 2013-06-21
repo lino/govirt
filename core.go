@@ -42,10 +42,11 @@ func (p *Node) Connect() error {
 	return nil
 }
 
-func (p *Node) Disconnect() {
+func (p *Node) Disconnect() int {
 	if p.conn.Pointer != nil {
-		C.virConnectClose(p.conn.Pointer)
+		return int(C.virConnectClose(p.conn.Pointer))
 	}
+	return -1
 }
 
 func Connect(url string) (Node, error) {
