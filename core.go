@@ -1,4 +1,4 @@
-package core
+package govirt
 
 // #cgo pkg-config: libvirt
 // #include <stdlib.h>
@@ -34,13 +34,18 @@ func (p *Node) Connect() error {
 	cUrl := C.CString(p.Url)
 	defer C.free(unsafe.Pointer(cUrl))
 	conn := C.virConnectOpenAuth(cUrl, C.virConnectAuthPtrDefault, 0) // TODO: Implement alias override
-	defer C.free(unsafe.Pointer(conn))
 	if conn == nil {
 		return errors.New("Unable to establish connection")
 	}
 	p.conn = Connection{conn}
 
 	return nil
+}
+
+func (p *Node) Disconnect() {
+	if p.conn.Pointer != nil {
+		C.virConnectClose(p.conn.Pointer)
+	}
 }
 
 func Connect(url string) (Node, error) {

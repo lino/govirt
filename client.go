@@ -1,4 +1,4 @@
-package main
+package govirt
 
 // #cgo pkg-config: libvirt
 // #include <libvirt/libvirt.h>
