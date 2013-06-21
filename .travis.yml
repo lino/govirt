@@ -2,5 +2,7 @@ language: go
 go: 1.1.1
 
 script:
+ - sudo apt-get update -qq
+ - sudo apt-get install libvirt libvirt-dev
  - go test -v
  - cd core && go test -v core
